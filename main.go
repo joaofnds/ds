@@ -4,6 +4,7 @@ import (
 	"ds/linked_list"
 	"ds/queue"
 	"ds/stack"
+	"ds/tree"
 
 	"fmt"
 )
@@ -12,6 +13,7 @@ func main() {
 	ll()
 	s()
 	q()
+	t()
 }
 
 func ll() {
@@ -39,4 +41,12 @@ func q() {
 	s.Enqueue(3)
 	s.Dequeue()
 	fmt.Printf("%+v\n", s.ToSlice())
+}
+
+func t() {
+	root := tree.NewNode(4)
+	for _, v := range []int{2, 1, 3, 6, 5, 7} {
+		root.Insert(v)
+	}
+	fmt.Printf("%+v\n", root.ToSlice())
 }
