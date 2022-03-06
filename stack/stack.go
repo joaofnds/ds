@@ -9,12 +9,16 @@ type Stack struct {
 	head *Node
 }
 
+func NewStack() *Stack {
+	return new(Stack)
+}
+
 func (s *Stack) IsEmpty() bool {
 	return s.head == nil
 }
 
 func (s *Stack) Peek() (int, bool) {
-	if s.head == nil {
+	if s.IsEmpty() {
 		return 0, false
 	}
 
@@ -27,6 +31,10 @@ func (s *Stack) Push(data int) {
 }
 
 func (s *Stack) Pop() {
+	if s.IsEmpty() {
+		return
+	}
+
 	s.head = s.head.prev
 }
 
