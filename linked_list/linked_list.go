@@ -1,20 +1,24 @@
 package linked_list
 
-type Node struct {
+type node struct {
 	data int
-	next *Node
+	next *node
 }
 
-type LinkedList struct {
-	head *Node
+type linkedList struct {
+	head *node
 }
 
-func NewNode(n int) *Node {
-	return &Node{n, nil}
+func NewLinkedList() *linkedList {
+	return new(linkedList)
 }
 
-func (ll *LinkedList) Append(data int) {
-	n := NewNode(data)
+func newNode(n int) *node {
+	return &node{n, nil}
+}
+
+func (ll *linkedList) Append(data int) {
+	n := newNode(data)
 
 	if ll.head == nil {
 		ll.head = n
@@ -30,13 +34,13 @@ func (ll *LinkedList) Append(data int) {
 	curr.next = n
 }
 
-func (ll *LinkedList) Prepend(data int) {
-	n := NewNode(data)
+func (ll *linkedList) Prepend(data int) {
+	n := newNode(data)
 	n.next = ll.head
 	ll.head = n
 }
 
-func (ll *LinkedList) Delete(data int) {
+func (ll *linkedList) Delete(data int) {
 	if ll.head == nil {
 		return
 	}
@@ -53,7 +57,7 @@ func (ll *LinkedList) Delete(data int) {
 	}
 }
 
-func (ll *LinkedList) ToSlice() []int {
+func (ll *linkedList) ToSlice() []int {
 	out := []int{}
 
 	for curr := ll.head; curr != nil; curr = curr.next {
