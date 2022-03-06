@@ -1,16 +1,16 @@
 package tree
 
-type Node struct {
+type node struct {
 	data  int
-	left  *Node
-	right *Node
+	left  *node
+	right *node
 }
 
-func NewNode(data int) *Node {
-	return &Node{data, nil, nil}
+func NewNode(data int) *node {
+	return &node{data, nil, nil}
 }
 
-func (root *Node) Insert(data int) *Node {
+func (root *node) Insert(data int) *node {
 	if root == nil {
 		return NewNode(data)
 	}
@@ -24,7 +24,7 @@ func (root *Node) Insert(data int) *Node {
 	return root
 }
 
-func (root *Node) Contains(data int) bool {
+func (root *node) Contains(data int) bool {
 	switch {
 	case root == nil:
 		return false
@@ -39,7 +39,7 @@ func (root *Node) Contains(data int) bool {
 	}
 }
 
-func (root *Node) ToSlice() []int {
+func (root *node) ToSlice() []int {
 	if root == nil {
 		return []int{}
 	}
