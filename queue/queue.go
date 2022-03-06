@@ -10,12 +10,20 @@ type Queue struct {
 	end   *Node
 }
 
+func NewQueue() Queue {
+	return Queue{}
+}
+
 func (q *Queue) IsEmpty() bool {
 	return q.start == nil
 }
 
-func (q *Queue) Peek() int {
-	return q.start.data
+func (q *Queue) Peek() (int, bool) {
+	if q.start == nil {
+		return 0, false
+	}
+
+	return q.start.data, true
 }
 
 func (q *Queue) Enqueue(data int) {
