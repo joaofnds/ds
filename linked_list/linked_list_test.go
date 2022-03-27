@@ -6,7 +6,7 @@ import (
 )
 
 func Test_StartsEmpty(t *testing.T) {
-	ll := NewLinkedList()
+	ll := NewLinkedList[int]()
 
 	len := len(ll.ToSlice())
 	if len != 0 {
@@ -15,7 +15,7 @@ func Test_StartsEmpty(t *testing.T) {
 }
 
 func Test_Append(t *testing.T) {
-	ll := NewLinkedList()
+	ll := NewLinkedList[int]()
 	ll.Append(1)
 	ll.Append(2)
 	ll.Append(3)
@@ -27,7 +27,7 @@ func Test_Append(t *testing.T) {
 }
 
 func Test_Prepend(t *testing.T) {
-	ll := NewLinkedList()
+	ll := NewLinkedList[int]()
 	ll.Prepend(1)
 	ll.Prepend(2)
 	ll.Prepend(3)
@@ -40,7 +40,7 @@ func Test_Prepend(t *testing.T) {
 }
 
 func Test_Delete(t *testing.T) {
-	ll := NewLinkedList()
+	ll := NewLinkedList[int]()
 	ll.Append(1)
 	ll.Append(2)
 	ll.Append(3)

@@ -17,7 +17,7 @@ func main() {
 }
 
 func ll() {
-	ll := linked_list.NewLinkedList()
+	ll := linked_list.NewLinkedList[int]()
 	ll.Append(2)
 	ll.Append(3)
 	ll.Prepend(1)

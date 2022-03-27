@@ -1,23 +1,23 @@
 package linked_list
 
-type node struct {
-	data int
-	next *node
+type node[T comparable] struct {
+	data T
+	next *node[T]
 }
 
-type linkedList struct {
-	head *node
+type linkedList[T comparable] struct {
+	head *node[T]
 }
 
-func NewLinkedList() *linkedList {
-	return new(linkedList)
+func NewLinkedList[T comparable]() *linkedList[T] {
+	return new(linkedList[T])
 }
 
-func newNode(n int) *node {
-	return &node{n, nil}
+func newNode[T comparable](n T) *node[T] {
+	return &node[T]{n, nil}
 }
 
-func (ll *linkedList) Append(data int) {
+func (ll *linkedList[T]) Append(data T) {
 	n := newNode(data)
 
 	if ll.head == nil {
@@ -34,13 +34,13 @@ func (ll *linkedList) Append(data int) {
 	curr.next = n
 }
 
-func (ll *linkedList) Prepend(data int) {
+func (ll *linkedList[T]) Prepend(data T) {
 	n := newNode(data)
 	n.next = ll.head
 	ll.head = n
 }
 
-func (ll *linkedList) Delete(data int) {
+func (ll *linkedList[T]) Delete(data T) {
 	if ll.head == nil {
 		return
 	}
@@ -57,8 +57,8 @@ func (ll *linkedList) Delete(data int) {
 	}
 }
 
-func (ll *linkedList) ToSlice() []int {
-	out := []int{}
+func (ll *linkedList[T]) ToSlice() []T {
+	out := []T{}
 
 	for curr := ll.head; curr != nil; curr = curr.next {
 		out = append(out, curr.data)
