@@ -7,7 +7,7 @@ import (
 )
 
 func Test_QueueStartsEmpty(t *testing.T) {
-	q := queue.NewQueue()
+	q := queue.NewQueue[int]()
 
 	actual := q.ToSlice()
 	if !reflect.DeepEqual(actual, []int{}) {
@@ -16,7 +16,7 @@ func Test_QueueStartsEmpty(t *testing.T) {
 }
 
 func Test_EnqueueAddsToTheEnd(t *testing.T) {
-	q := queue.NewQueue()
+	q := queue.NewQueue[int]()
 	q.Enqueue(1)
 	q.Enqueue(2)
 	q.Enqueue(3)
@@ -29,7 +29,7 @@ func Test_EnqueueAddsToTheEnd(t *testing.T) {
 }
 
 func Test_PeekReturnsTheFirstAddedElement(t *testing.T) {
-	q := queue.NewQueue()
+	q := queue.NewQueue[int]()
 	q.Enqueue(1)
 	q.Enqueue(2)
 
@@ -46,7 +46,7 @@ func Test_PeekReturnsTheFirstAddedElement(t *testing.T) {
 }
 
 func Test_DequeueRemovesTheFirstElement(t *testing.T) {
-	q := queue.NewQueue()
+	q := queue.NewQueue[int]()
 	q.Enqueue(1)
 	q.Enqueue(2)
 	q.Enqueue(3)
@@ -62,7 +62,7 @@ func Test_DequeueRemovesTheFirstElement(t *testing.T) {
 }
 
 func Test_DequeueReturnsFalseWhenQueueIsEmpty(t *testing.T) {
-	q := queue.NewQueue()
+	q := queue.NewQueue[int]()
 	v, ok := q.Dequeue()
 
 	if ok {
@@ -75,7 +75,7 @@ func Test_DequeueReturnsFalseWhenQueueIsEmpty(t *testing.T) {
 }
 
 func Test_IsEmptyAfterRemovingAddedElements(t *testing.T) {
-	q := queue.NewQueue()
+	q := queue.NewQueue[int]()
 	q.Enqueue(1)
 	q.Enqueue(2)
 	q.Dequeue()

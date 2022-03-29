@@ -1,33 +1,33 @@
 package queue
 
-type Node struct {
-	data int
-	next *Node
+type Node[T any] struct {
+	data T
+	next *Node[T]
 }
 
-type Queue struct {
-	start *Node
-	end   *Node
+type Queue[T any] struct {
+	start *Node[T]
+	end   *Node[T]
 }
 
-func NewQueue() Queue {
-	return Queue{}
+func NewQueue[T any]() Queue[T] {
+	return Queue[T]{}
 }
 
-func (q *Queue) IsEmpty() bool {
+func (q *Queue[T]) IsEmpty() bool {
 	return q.start == nil
 }
 
-func (q *Queue) Peek() (int, bool) {
+func (q *Queue[T]) Peek() (T, bool) {
 	if q.start == nil {
-		return 0, false
+		return *new(T), false
 	}
 
 	return q.start.data, true
 }
 
-func (q *Queue) Enqueue(data int) {
-	node := &Node{data, nil}
+func (q *Queue[T]) Enqueue(data T) {
+	node := &Node[T]{data, nil}
 	if q.end != nil {
 		q.end.next = node
 	}
@@ -38,9 +38,9 @@ func (q *Queue) Enqueue(data int) {
 	}
 }
 
-func (q *Queue) Dequeue() (int, bool) {
+func (q *Queue[T]) Dequeue() (T, bool) {
 	if q.IsEmpty() {
-		return 0, false
+		return *new(T), false
 	}
 
 	data := q.start.data
@@ -53,8 +53,8 @@ func (q *Queue) Dequeue() (int, bool) {
 	return data, true
 }
 
-func (q *Queue) ToSlice() []int {
-	out := []int{}
+func (q *Queue[T]) ToSlice() []T {
+	out := []T{}
 
 	for curr := q.start; curr != nil; curr = curr.next {
 		out = append(out, curr.data)

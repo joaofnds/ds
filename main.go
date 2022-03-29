@@ -35,10 +35,10 @@ func s() {
 }
 
 func q() {
-	s := queue.Queue{}
-	s.Enqueue(1)
-	s.Enqueue(2)
-	s.Enqueue(3)
+	s := queue.Queue[string]{}
+	s.Enqueue("first")
+	s.Enqueue("second")
+	s.Enqueue("third")
 	s.Dequeue()
 	fmt.Printf("%+v\n", s.ToSlice())
 }
