@@ -1,18 +1,20 @@
 package tree
 
-type node struct {
-	data  int
-	left  *node
-	right *node
+import "golang.org/x/exp/constraints"
+
+type node[T constraints.Ordered] struct {
+	data  T
+	left  *node[T]
+	right *node[T]
 }
 
-func NewNode(data int) *node {
-	return &node{data, nil, nil}
+func NewNode[T constraints.Ordered](data T) *node[T] {
+	return &node[T]{data, nil, nil}
 }
 
-func (root *node) Insert(data int) *node {
+func (root *node[T]) Insert(data T) *node[T] {
 	if root == nil {
-		return NewNode(data)
+		return NewNode[T](data)
 	}
 
 	if data <= root.data {
@@ -24,7 +26,7 @@ func (root *node) Insert(data int) *node {
 	return root
 }
 
-func (root *node) Contains(data int) bool {
+func (root *node[T]) Contains(data T) bool {
 	switch {
 	case root == nil:
 		return false
@@ -39,12 +41,12 @@ func (root *node) Contains(data int) bool {
 	}
 }
 
-func (root *node) ToSlice() []int {
+func (root *node[T]) ToSlice() []T {
 	if root == nil {
-		return []int{}
+		return []T{}
 	}
 
-	result := []int{}
+	result := []T{}
 	result = append(result, root.left.ToSlice()...)
 	result = append(result, root.data)
 	result = append(result, root.right.ToSlice()...)
