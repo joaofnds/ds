@@ -1,36 +1,36 @@
 package stack
 
-type Node struct {
-	data int
-	prev *Node
+type Node[T any] struct {
+	data T
+	prev *Node[T]
 }
 
-type Stack struct {
-	head *Node
+type Stack[T any] struct {
+	head *Node[T]
 }
 
-func NewStack() *Stack {
-	return new(Stack)
+func NewStack[T any]() *Stack[T] {
+	return new(Stack[T])
 }
 
-func (s *Stack) IsEmpty() bool {
+func (s *Stack[T]) IsEmpty() bool {
 	return s.head == nil
 }
 
-func (s *Stack) Peek() (int, bool) {
+func (s *Stack[T]) Peek() (T, bool) {
 	if s.IsEmpty() {
-		return 0, false
+		return *new(T), false
 	}
 
 	return s.head.data, true
 }
 
-func (s *Stack) Push(data int) {
-	node := &Node{data, s.head}
+func (s *Stack[T]) Push(data T) {
+	node := &Node[T]{data, s.head}
 	s.head = node
 }
 
-func (s *Stack) Pop() {
+func (s *Stack[T]) Pop() {
 	if s.IsEmpty() {
 		return
 	}
@@ -38,8 +38,8 @@ func (s *Stack) Pop() {
 	s.head = s.head.prev
 }
 
-func (s *Stack) ToSlice() []int {
-	out := []int{}
+func (s *Stack[T]) ToSlice() []T {
+	out := []T{}
 
 	for curr := s.head; curr != nil; curr = curr.prev {
 		out = append(out, curr.data)

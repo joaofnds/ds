@@ -7,7 +7,7 @@ import (
 )
 
 func TestStack_IsEmptyWhenNothingHasBeenPushed(t *testing.T) {
-	s := stack.NewStack()
+	s := stack.NewStack[int]()
 
 	if s.IsEmpty() != true {
 		t.Errorf("should be empty")
@@ -33,7 +33,7 @@ func TestStack_Peek(t *testing.T) {
 	}
 
 	for _, tc := range testTable {
-		s := stack.NewStack()
+		s := stack.NewStack[int]()
 		for _, e := range tc.elems {
 			s.Push(e)
 		}
@@ -49,7 +49,7 @@ func TestStack_Peek(t *testing.T) {
 	}
 }
 func TestStack_PeekDoesntAlterTheStack(t *testing.T) {
-	s := stack.NewStack()
+	s := stack.NewStack[int]()
 	s.Push(1)
 	s.Push(2)
 	s.Push(3)
@@ -109,7 +109,7 @@ func TestStack_PopRemovesTheTopElement(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			s := stack.NewStack()
+			s := stack.NewStack[int]()
 
 			for _, e := range tc.elems {
 				s.Push(e)
@@ -132,7 +132,7 @@ func TestStack_PopRemovesTheTopElement(t *testing.T) {
 }
 
 func TestStack_ToSlice(t *testing.T) {
-	s := stack.NewStack()
+	s := stack.NewStack[int]()
 	s.Push(1)
 	s.Push(2)
 	s.Push(3)

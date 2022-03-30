@@ -26,10 +26,10 @@ func ll() {
 }
 
 func s() {
-	s := stack.Stack{}
-	s.Push(1)
-	s.Push(2)
-	s.Push(3)
+	s := stack.Stack[string]{}
+	s.Push("first")
+	s.Push("second")
+	s.Push("third")
 	s.Pop()
 	fmt.Printf("%+v\n", s.ToSlice())
 }
