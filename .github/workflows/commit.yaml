@@ -16,4 +16,7 @@ jobs:
       - name: dagger do test
         uses: dagger/dagger-for-github@v2
         with:
-          args: project update; dagger do test
+          install-only: true
+
+      - run: dagger project update
+      - run: dagger do test
