@@ -14,9 +14,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: dagger do test
-        uses: dagger/dagger-for-github@v2
+        uses: dagger/dagger-for-github@main
         with:
-          install-only: true
-
-      - run: dagger project update
-      - run: dagger do test
+          cmds: |
+            project update
+            do test
