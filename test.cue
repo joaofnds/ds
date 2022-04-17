@@ -12,12 +12,10 @@ dagger.#Plan & {
 	}
 	actions: {
 		_source: client.filesystem.".".read.contents
-		_image:  go.#Image & {version: "1.18"}
 
 		test: go.#Test & {
 			source:  _source
 			package: "./..."
-			input:   _image.output
 		}
 	}
 }
