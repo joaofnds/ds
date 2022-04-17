@@ -11,10 +11,8 @@ dagger.#Plan & {
 		include: ["go.mod", "go.sum", "**/*.go"]
 	}
 	actions: {
-		_source: client.filesystem.".".read.contents
-
 		test: go.#Test & {
-			source:  _source
+			source:  client.filesystem.".".read.contents
 			package: "./..."
 		}
 	}
