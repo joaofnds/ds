@@ -1,6 +1,6 @@
 package tree
 
-import "golang.org/x/exp/constraints"
+import "ds/constraints"
 
 type node[T constraints.Ordered] struct {
 	data  T
