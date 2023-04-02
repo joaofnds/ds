@@ -3,19 +3,13 @@ name: test
 on:
   push:
 
-env:
-  DAGGER_LOG_FORMAT: plain
-
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: dagger do test
-        uses: dagger/dagger-for-github@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
         with:
-          cmds: |
-            project update
-            do test
+          go-version: ">=1.20"
+          cache: true
+      - run: go test ./...
